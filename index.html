@@ -3,7 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>看这里</title>
+  <title>抽扑克</title>
+  <script type="text/javascript" compress="no-compress">
+      !function () {
+          function a() {
+              /* iframe 中不处理最大宽度 */
+              if (parseInt(document.documentElement.clientWidth) > 768 && top.window == window) {
+                  document.documentElement.style.fontSize = 768 / 750 * 10 / 16 * 1000 + "%";
+              } else {
+                  document.documentElement.style.fontSize = document.documentElement.clientWidth / 750 * 10 / 16 * 1000 + "%";
+              }
+          }
+          var b = null;
+          window.addEventListener("resize", function () {
+              clearTimeout(b);
+              b = setTimeout(a, 300);
+          }, !1);
+          a();
+      }(window);
+  </script>
 </head>
 <body>
   <div id="app"></div>

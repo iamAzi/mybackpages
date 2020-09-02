@@ -6,7 +6,7 @@ const Router = require('koa-router');
 
 let home = new Router();
 
-home.get('/home', async ctx => {
+home.get('/', async ctx => {
   ctx.response.type = 'html'
   ctx.body = fs.createReadStream('./index.html');
 })
