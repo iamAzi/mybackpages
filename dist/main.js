@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("setTimeout(() => {\n  alert('要吃饭啦！');\n}, 3000);\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("setTimeout(() => {\n  alert('要睡觉啦！');\n}, 3000);\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
