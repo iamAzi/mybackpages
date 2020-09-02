@@ -18,6 +18,11 @@
   },
   "homepage": "https://github.com/iamAzi/mybackpages#readme",
   "devDependencies": {
-    "koa": "^2.13.0"
+    "koa": "^2.13.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "koa-router": "^9.4.0"
   }
 }
