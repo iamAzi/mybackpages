@@ -19,12 +19,24 @@
   },
   "homepage": "https://github.com/iamAzi/mybackpages#readme",
   "devDependencies": {
+    "@babel/cli": "^7.11.5",
+    "@babel/core": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^4.2.2",
     "koa": "^2.13.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^10.0.1",
+    "style-loader": "^1.2.1",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.11.5",
     "koa-router": "^9.4.0",
-    "koa-static": "^5.0.0"
+    "koa-static": "^5.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   }
 }
