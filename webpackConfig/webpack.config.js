@@ -1,12 +1,21 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const webpack = require('webpack');
+const WriteFilePlugin = require('write-file-webpack-plugin');
 
 module.exports = {
-  entry: path.resolve(__dirname, '../src/index.jsx'),
+  entry: path.join(__dirname, '../src/index.jsx'),
   mode: 'development',
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, '../dist')
+    path: path.join(__dirname, '../dist')
+  },
+  devtool: 'cheap-source-map',
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    compress: true,
+    port: 9000,
+    hot: true
   },
   module: {
     rules: [
@@ -39,5 +48,7 @@ module.exports = {
   },
   plugins: [
       new CleanWebpackPlugin(),
+      new webpack.HotModuleReplacementPlugin(),
+      new WriteFilePlugin(),
   ],
 }

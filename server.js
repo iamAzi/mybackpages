@@ -11,6 +11,13 @@ home.get('/', async ctx => {
   ctx.body = fs.createReadStream('./index.html');
 })
 
+home.get('/pickCard', async ctx => {
+  let number = Math.ceil(Math.random() * 13);
+
+  ctx.type = 'application/json';
+  ctx.body = { data: number };
+})
+
 const app = new Koa();
 
 // 配置静态资源
