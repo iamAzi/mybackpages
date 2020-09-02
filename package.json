@@ -23,6 +23,7 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "koa-router": "^9.4.0"
+    "koa-router": "^9.4.0",
+    "koa-static": "^5.0.0"
   }
 }
