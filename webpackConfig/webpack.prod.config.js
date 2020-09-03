@@ -11,6 +11,9 @@ module.exports = {
     filename: '[name]-[chunkhash:8].js',
     path: path.join(__dirname, '../dist')
   },
+  resolve: {
+    extensions: ['.jsx', '.js', '.json']
+  },
   module: {
     rules: [
       {
