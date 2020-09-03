@@ -3,6 +3,7 @@ const fs = require('fs')
 const Koa = require('koa');
 const static = require('koa-static');
 const Router = require('koa-router');
+const address = require('address');
 
 let home = new Router();
 
@@ -29,4 +30,6 @@ app.use(static(
 app.use(home.routes(), home.allowedMethods());
 
 
-app.listen(3000);
+app.listen(3000)
+
+console.log(`listening ${address.ip()}:3000`)

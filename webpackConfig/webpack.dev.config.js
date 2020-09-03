@@ -2,6 +2,10 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
 const WriteFilePlugin = require('write-file-webpack-plugin');
+const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 
 module.exports = {
   entry: path.join(__dirname, '../src/index.jsx'),
@@ -16,6 +20,9 @@ module.exports = {
     compress: true,
     port: 9000,
     hot: true
+  },
+  externals: {
+
   },
   module: {
     rules: [
@@ -50,5 +57,26 @@ module.exports = {
       new CleanWebpackPlugin(),
       new webpack.HotModuleReplacementPlugin(),
       new WriteFilePlugin(),
+      new HtmlWebpackPlugin({
+        template: path.join(__dirname, '../index.html'),
+        inject: true,
+      }),
+      new HtmlWebpackExternalsPlugin({
+        externals: [
+          {
+            module: 'react',
+            entry: '//unpkg.com/react@16/umd/react.production.min.js',
+            global: 'React'
+          },
+          {
+            module: 'react-dom',
+            entry: '//unpkg.com/react-dom@16/umd/react-dom.production.min.js',
+            global: 'ReactDOM'
+          }
+        ]
+      }),
+      new BundleAnalyzerPlugin({
+        analyzerPort: 8889
+      })
   ],
 }

@@ -1,5 +1,3 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
 import Tool from './lib/tool'
 import cardImg from './img/card-bg.png'
 import 'whatwg-fetch'
