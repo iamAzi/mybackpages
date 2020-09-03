@@ -43,7 +43,6 @@ class App extends React.Component {
         this.setState({
           name: res.name
         }, () => {
-          this.refreshCardRemain();
           this.handleGetUserStatus();
         })
       }
@@ -96,7 +95,6 @@ class App extends React.Component {
         easing: 'easeOutElastic(1, .8)'
       });
     }).then(() => {
-      this.refreshCardRemain();
       this.handleGetUserStatus();
     })
   }
@@ -115,6 +113,7 @@ class App extends React.Component {
         easing: 'easeOutElastic(1, .8)'
       });
     })
+    this.refreshCardRemain();
   }
 
   handleUseCard(type) {
