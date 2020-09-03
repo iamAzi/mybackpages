@@ -9,6 +9,7 @@ import './index.scss'
 import introIcon from './img/intro-icon.png'
 import cardImg from './img/card-bg.png'
 import cardRemainImg from './img/cards-remain.png'
+import refreshIcon from './img/refresh.png'
 
 
 class App extends React.Component {
@@ -19,6 +20,7 @@ class App extends React.Component {
     this.handlePickCard = this.handlePickCard.bind(this);
     this.handleSubmitName = this.handleSubmitName.bind(this);
     this.refreshCardRemain = this.refreshCardRemain.bind(this);
+    this.handleGetUserStatus = this.handleGetUserStatus.bind(this);
     this.state = {
       name: '',
       cardVal: 0,
@@ -172,6 +174,7 @@ class App extends React.Component {
                   <img className='remain-icon' src={cardRemainImg} onClick={this.refreshCardRemain}/>
                   <div className='remain-number'>{this.state.remain}</div>
                 </div>
+                <img className='refresh-btn' src={refreshIcon} onClick={this.handleGetUserStatus}/>
               </div>
             )
           }

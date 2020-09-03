@@ -117,5 +117,11 @@ html, body, #app {
         line-height: 1rem;
       }
     }
+    .refresh-btn {
+      position: fixed;
+      right: 2%;
+      bottom: 2%;
+      width: 1rem;
+    }
   }
 }
