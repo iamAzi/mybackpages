@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node server.js & webpack --config ./webpackConfig/webpack.dev.config.js",
+    "build": "webpack --config ./webpackConfig/webpack.dev.config.js",
     "server": "webpack --config ./webpackConfig/webpack.prod.config.js && forever restart server.js"
   },
   "repository": {

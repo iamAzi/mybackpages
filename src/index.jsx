@@ -1,5 +1,6 @@
 import Tool from './lib/tool'
 import cardImg from './img/card-bg.png'
+// import Result from './component/result/index'
 import 'whatwg-fetch'
 import './index.scss'
 
@@ -38,16 +39,8 @@ class App extends React.Component {
         <div className='wrapper'>
           <img className='card-img' src={cardImg}/>
           {
-            this.state.cardVal ? <div className='result-area'>
-              你抽到的牌是
-              <div className='number'>
-                {this.state.cardVal}
-              </div>
-              <div className='rule'>
-                {this.state.rule}
-              </div>
-            </div>
-            : null
+            // this.state.cardVal ? <Result {...this.state} />
+            // : null
           }
           <div className='button' onClick={this.handlePickCard}>点击发牌</div>
         </div>
