@@ -9,7 +9,8 @@ module.exports = {
   mode: 'production',
   output: {
     filename: '[name]-[chunkhash:8].js',
-    path: path.join(__dirname, '../dist')
+    path: path.join(__dirname, '../dist'),
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.jsx', '.js', '.json']
