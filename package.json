@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node server.js & webpack --config ./webpackConfig/webpack.dev.config.js",
+    "dev": "webpack-dev-server --config ./webpackConfig/webpack.dev.config.js & node server.js",
     "build": "webpack --config ./webpackConfig/webpack.dev.config.js",
     "server": "webpack --config ./webpackConfig/webpack.prod.config.js && forever restart server.js"
   },
@@ -41,8 +41,10 @@
   "dependencies": {
     "@babel/polyfill": "^7.11.5",
     "address": "^1.1.2",
+    "animejs": "^3.2.0",
     "fetch": "^1.1.0",
     "html-webpack-plugin": "^4.4.1",
+    "koa-bodyparser": "^4.3.0",
     "koa-router": "^9.4.0",
     "koa-static": "^5.0.0",
     "react": "^16.13.1",

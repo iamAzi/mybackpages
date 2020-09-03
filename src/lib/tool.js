@@ -15,7 +15,7 @@ const cards = {
 }
 
 const rules = {
-  1: '挡一杯酒',
+  'A': '挡一杯酒',
   2: '陪酒小姐',
   3: '动物园植物园水果园',
   4: '划拳',
@@ -25,9 +25,11 @@ const rules = {
   8: '厕所',
   9: '自己喝一杯',
   10: '神经病',
-  11: '左边的喝一杯',
-  12: '右边的喝一杯',
-  13: '指定下一个K喝'
+  'J': '左边的喝一杯',
+  'Q': '右边的喝一杯',
+  'K': '指定下一个K喝',
+  'Joker': '收回身份牌',
+  'Big Joker': '收回身份牌，全员厕所权'
 }
 
 
@@ -35,11 +37,11 @@ function getCardFromNumber(number) {
   return cards[number]
 }
 
-function getRuleFromNumber(number) {
+function getRuleFromCardVal(number) {
   return rules[number]
 }
 
 export default {
   getCardFromNumber,
-  getRuleFromNumber
+  getRuleFromCardVal
 }

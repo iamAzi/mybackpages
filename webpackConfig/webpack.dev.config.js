@@ -12,17 +12,19 @@ module.exports = {
   mode: 'development',
   output: {
     filename: '[name].js',
-    path: path.join(__dirname, '../dist')
+    path: path.join(__dirname, '../dist'),
+    publicPath: '/'
   },
   devtool: 'cheap-source-map',
   devServer: {
     contentBase: path.join(__dirname, "dist"),
+    publicPath: '/',
     compress: true,
     port: 9000,
     hot: true
   },
-  externals: {
-
+  resolve: {
+    extensions: ['.jsx', '.js', '.json']
   },
   module: {
     rules: [
@@ -46,7 +48,6 @@ module.exports = {
             options: {
               name: '[name].[ext]',
               publicPath: '',
-              // outputPath: '../dist'
             }
           }
         ]
@@ -59,6 +60,7 @@ module.exports = {
       new WriteFilePlugin(),
       new HtmlWebpackPlugin({
         template: path.join(__dirname, '../index.html'),
+        filename: path.join(__dirname, '../static/index.html'),
         inject: true,
       }),
       new HtmlWebpackExternalsPlugin({
@@ -75,8 +77,8 @@ module.exports = {
           }
         ]
       }),
-      new BundleAnalyzerPlugin({
-        analyzerPort: 8889
-      })
+      // new BundleAnalyzerPlugin({
+      //   analyzerPort: 8889
+      // })
   ],
 }

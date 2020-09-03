@@ -44,6 +44,7 @@ module.exports = {
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         template: path.join(__dirname, '../index.html'),
+        filename: path.join(__dirname, '../static/index.html'),
         inject: true,
       }),
       new HtmlWebpackExternalsPlugin({

@@ -13,4 +13,5 @@ function Result(props) {
     </div>
   )
 }
+
 export default Result;
