@@ -1,8 +1,7 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
 import Tool from './lib/tool'
-import './index.scss'
 import cardImg from './img/card-bg.png'
+import 'whatwg-fetch'
+import './index.scss'
 
 class App extends React.Component {
   constructor(props) {
@@ -16,13 +15,21 @@ class App extends React.Component {
   }
 
   handlePickCard() {
-    let number = Math.ceil(Math.random() * 13);
-    console.log(number)
-    let cardVal = Tool.getCardFromNumber(number);
-    let rule = Tool.getRuleFromNumber(number);
-    this.setState({
-      cardVal: cardVal,
-      rule: rule
+    fetch('/pickCard', {
+      headers: {
+      'Content-Type': 'application/json'
+      }
+    }).then(response => {
+      return response.json().then(res => {
+        console.log(res.data)
+        const number = res.data;
+        let cardVal = Tool.getCardFromNumber(number);
+        let rule = Tool.getRuleFromNumber(number);
+        this.setState({
+          cardVal: cardVal,
+          rule: rule
+        })
+      })
     })
   }
 
