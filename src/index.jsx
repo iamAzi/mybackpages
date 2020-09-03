@@ -6,7 +6,7 @@ import anime from 'animejs'
 import 'whatwg-fetch'
 import './index.scss'
 
-import gif from './img/sq.gif'
+import introIcon from './img/intro-icon.png'
 import cardImg from './img/card-bg.png'
 import cardRemainImg from './img/cards-remain.png'
 
@@ -20,28 +20,47 @@ class App extends React.Component {
     this.handleSubmitName = this.handleSubmitName.bind(this);
     this.refreshCardRemain = this.refreshCardRemain.bind(this);
     this.state = {
-      username: '',
+      name: '',
       cardVal: 0,
       rule: '',
       errorText: '请输入昵称',
       remain: 54,
-      canPick: true
+      canPick: true,
+      wc: 0,
+      nose: 0,
+      oneCup: 0,
+      camera: 0,
+      cheapGirl: false,
+      stupid: false,
     }
+  }
+
+  componentDidMount() {
+    Ajax.getData('/init').then(res => {
+      if (res.name) {
+        this.setState({
+          name: res.name
+        }, () => {
+          this.refreshCardRemain();
+          this.handleGetUserStatus();
+        })
+      }
+    })
   }
 
   handleSubmitName() {
     const name = this.nameInput.current.value;
     Ajax.postData('/submitName', {
-      username: this.nameInput.current.value
+      name: this.nameInput.current.value
       }).then(res => {
         if (res.code == 200) {
           this.setState({
-            username: name
+            name: name
           })
           this.refreshCardRemain();
         } else if (res.code == 402) {
           this.setState({
-            username: '',
+            name: '',
             errorText: '名字被占用，请重新设置'
           })
         }
@@ -59,7 +78,7 @@ class App extends React.Component {
       this.setState({
         canPick: true
       })
-    }, 2000);
+    }, 100);
 
     Ajax.getData('/pickCard').then(res => {
       console.log(res.data)
@@ -75,7 +94,22 @@ class App extends React.Component {
         easing: 'easeOutElastic(1, .8)'
       });
     }).then(() => {
-      this.refreshCardRemain()
+      this.refreshCardRemain();
+      this.handleGetUserStatus();
+    })
+  }
+
+  handleGetUserStatus() {
+    Ajax.getData('/userStatus').then(res => {
+      this.setState({
+        ...res
+      })
+    })
+  }
+
+  handleUseCard(type) {
+    Ajax.postData('/useCard', {type}).then(res => {
+      this.handleGetUserStatus();
     })
   }
 
@@ -90,21 +124,44 @@ class App extends React.Component {
   }
 
   render() {
+    let special = '';
+    if (this.state.cheapGirl && this.state.stupid) {
+      special = (
+        <div className='special'>陪酒小姐<br/>神经病</div>
+      )
+    } else if (this.state.cheapGirl) {
+      special = (
+        <div className='special'>陪酒小姐</div>
+      )
+    } else if (this.state.stupid) {
+      special = (
+        <div className='special'>神经病</div>
+      )
+    }
     return (
-        <div className='wrapper'>
-          { !this.state.username &&
+        <div className={'wrapper '}>
+          { !this.state.name &&
             <div className="name-area">
               <div className='title'>欢迎来到<br/>健康运动卡牌游戏</div>
-              <img className='squat-gif' src={gif}/>
+              <img className='squat-gif' src={introIcon}/>
               <div className='error-text'>{this.state.errorText}</div>
               <input className="name-input" type="text" ref={this.nameInput}/>
               <div className="confirm-btn" onClick={this.handleSubmitName}>确认</div>
             </div>
           }
           {
-            this.state.username && (
-              <div>
-                <div className='username'>你好，「{this.state.username}」</div>
+            this.state.name && (
+              <div className='gaming'>
+                {
+                  special
+                }
+                <div className='info-area'>
+                  <div className='magic' onClick={this.handleUseCard.bind(this, 'wc')}>厕所：{this.state.wc}</div>
+                  <div className='magic' onClick={this.handleUseCard.bind(this, 'nose')}>鼻子：{this.state.nose}</div>
+                  <div className='magic' onClick={this.handleUseCard.bind(this, 'camera')}>照相：{this.state.camera}</div>
+                  <div className='magic' onClick={this.handleUseCard.bind(this, 'cup')}>挡酒：{this.state.oneCup}</div>
+                </div>
+                <div className='username'>你好，「{this.state.name}」</div>
                 <img className='card-img' src={cardImg}/>
                 {
                   this.state.cardVal ? <Result {...this.state} />
