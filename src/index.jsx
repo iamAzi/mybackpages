@@ -106,6 +106,14 @@ class App extends React.Component {
       this.setState({
         ...res
       })
+            
+      anime({
+        targets: '.refresh-btn',
+        rotateY: ['0deg', '360deg'],
+        scale: [5, 1],
+        duration: 2000,
+        easing: 'easeOutElastic(1, .8)'
+      });
     })
   }
 
@@ -122,6 +130,7 @@ class App extends React.Component {
       this.setState({
         remain: remain
       })
+
     })
   }
 
